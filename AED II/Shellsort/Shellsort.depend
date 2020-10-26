@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1600900706 source:c:\users\matheus\onedrive\faculdade\aed2\testes\shellsort\main.c
+	<stdlib.h>
+	<stdio.h>
+
