@@ -81,7 +81,6 @@ bool delete_list(DinamicList *x, int id){
             {
                 x->fim = ant;
             }
-            
             free(tmp);
             x->TAM--;
             changed = true;

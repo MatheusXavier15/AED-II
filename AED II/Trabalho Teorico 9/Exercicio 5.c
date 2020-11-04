@@ -4,6 +4,7 @@
 // c) strcat()
 // d) strchr()
 #include <stdio.h>
+
 //Implementação da função strlen
 int new_strlen(char *str)
 {
@@ -14,6 +15,7 @@ int new_strlen(char *str)
     }
     return total;
 }
+
 //Implementação da função strcmp
 int new_strcmp(char *str, char *p)
 {
@@ -30,6 +32,8 @@ int new_strcmp(char *str, char *p)
         return -1;
     }
 }
+
+
 //Implementação da função strcat
 void new_strcat(char *str, char *p)
 {
@@ -40,6 +44,8 @@ void new_strcat(char *str, char *p)
         *(str + N + i) = *(p + i);
     }
 }
+
+
 //Implementação da função strchr
 char *new_strchr(char *str, char x)
 {
@@ -52,3 +58,4 @@ char *new_strchr(char *str, char x)
     }
     return (NULL);
 }
+
