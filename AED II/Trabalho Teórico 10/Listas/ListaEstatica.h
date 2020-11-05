@@ -21,30 +21,30 @@ typedef struct Lista
 bool create_list(Lista *list, int X)
 {
     list->MAX = X;
-    list->dados = (Pessoa *)malloc(sizeof(Pessoa));//Aloca a memória criando a lista
+    list->dados = (Pessoa *)malloc(sizeof(Pessoa)); //Aloca a memória criando a lista
     if (list == NULL)
     {
         return false;
     }
-    list->TAM = 0;//Começa a lista com tamanho 0
+    list->TAM = 0; //Começa a lista com tamanho 0
     return true;
 }
 //=======================================================================
 //Método booleano que adiciona um elemento à lista, caso a lista esteja cheia ele retorna false
 bool add_element(Lista *list, Pessoa x)
 {
-    if (list->TAM == list->MAX)//Verifica o tamanho da lista
+    if (list->TAM == list->MAX) //Verifica o tamanho da lista
     {
         return false;
     }
-    list->dados[list->TAM++] = x;//armazena o dado na lista na posição final (Ou seja, o tamanho)
+    list->dados[list->TAM++] = x; //armazena o dado na lista na posição final (Ou seja, o tamanho)
     return true;
 }
 //=======================================================================
 //Procedimento que imprime a lista chamando a função print_person
 void print_list(Lista *list)
 {
-    for (int i = 0; i < list->TAM; i++)//For passando pela lista imprimindo os elementos
+    for (int i = 0; i < list->TAM; i++) //For passando pela lista imprimindo os elementos
     {
         print_person(list->dados[i]);
     }
@@ -55,9 +55,9 @@ void print_list(Lista *list)
 void invert_list(Lista *list)
 {
     Lista aux;
-    create_lista(&aux);//cria a lista auxiliar
-    clone_list(list, &aux);//Clona a lista para auxiliar
-    for (int i = 0; i < list->TAM; i++)//For passando pela lista
+    create_lista(&aux);                 //cria a lista auxiliar
+    clone_list(list, &aux);             //Clona a lista para auxiliar
+    for (int i = 0; i < list->TAM; i++) //For passando pela lista
     {
         //inverte a lista
         aux.dados[list->TAM - i - 1].id = i + 1;
@@ -108,7 +108,7 @@ void clone_list(Lista *list, Lista *x)
     //For passando por toda a lista
     for (int i = 0; i < list->TAM; i++)
     {
-        //clona as listas  
+        //clona as listas
         aux = list->dados[i];
         add_element(x, aux);
     }
@@ -116,11 +116,11 @@ void clone_list(Lista *list, Lista *x)
 //=======================================================================
 //Procedimento que concatena as listas inseridas
 void concatenar_list(Lista *list, Lista *x, Lista *y)
-{  
-    //cria a lista 
+{
+    //cria a lista
     create_lista(x);
-    Pessoa aux; //cria a pessoa auxiliar
-    clone_list(list, x);//clona a lista para concatenar
+    Pessoa aux;          //cria a pessoa auxiliar
+    clone_list(list, x); //clona a lista para concatenar
     //for passando por toda a lista e concatenando duas em uma
     for (int i = 0; i < list->TAM; i++)
     {
@@ -132,8 +132,8 @@ void concatenar_list(Lista *list, Lista *x, Lista *y)
 //Método que retorna o maior elemento da lista (pessoa mais velha)
 Pessoa MAIOR(Lista *list)
 {
-    Pessoa maior = list->dados[0];//Criação da auxiliar maior ocupando o primeiro lugar de dados
-    int aux_maior = maior.age;//Declara a maior idade como a primeira
+    Pessoa maior = list->dados[0]; //Criação da auxiliar maior ocupando o primeiro lugar de dados
+    int aux_maior = maior.age;     //Declara a maior idade como a primeira
     //For passando por toda a lista comparando os dados e armazenando o maior
     for (int i = 0; i < list->TAM; i++)
     {
@@ -147,7 +147,7 @@ Pessoa MAIOR(Lista *list)
     return maior;
 }
 //=======================================================================
-//Método que retorna o ID de um elemento a ser pesquisado na lista - retorna -1 caso não exista na lista 
+//Método que retorna o ID de um elemento a ser pesquisado na lista - retorna -1 caso não exista na lista
 int pesquisar_pessoa(Lista *x, char *name)
 {
     //criação de variaveis
@@ -170,6 +170,44 @@ int pesquisar_pessoa(Lista *x, char *name)
     {
         return -1;
     }
+}
+//=======================================================================
+//
+bool INSERIR_ORDENADO(Lista *list, Pessoa x)
+{
+    //verifica se a lista está cheia
+    if (list->TAM == list->MAX)
+    {
+        printf("\nLista cheia!\n");
+        return false;
+    }
+    //Criação de variaveis auxiliares
+    int start = 0;
+    Pessoa aux, tmp;
+    //for passando por toda a lista
+    for (int i = 0; i < list->TAM; i++)
+    {
+        if (x.age > list->dados[i].age)
+        {
+            start = i + 1;
+        }
+    }
+    //inserindo os dados
+    x.id = start + 1;
+    list->TAM++;
+
+    aux = list->dados[start];
+    list->dados[start] = x;
+    //for passando por toda a lista
+    for (int i = start + 1; i < list->TAM; i++)
+    {
+        //swap dados
+        tmp = list->dados[i];
+        list->dados[i] = aux;
+        aux = list->dados[i + 1];
+    }
+    //retorna true
+    return true;
 }
 //=======================================================================
 //Procedimento que coloca a lista em ordem alfabética
@@ -216,12 +254,14 @@ void quicksort(Pessoa *Dado, int left, int right)
             j--;
         }
     }
-    if (left < j)quicksort(Dado, left, j);
-    if (right > i)quicksort(Dado, i, right);
+    if (left < j)
+        quicksort(Dado, left, j);
+    if (right > i)
+        quicksort(Dado, i, right);
 }
 //Procedimento que através do quicksort ordena a lista
 void crescent_sort(Lista *list)
 {
-    quicksort(list->dados, 0,list->TAM);
+    quicksort(list->dados, 0, list->TAM);
 }
 //=======================================================================
