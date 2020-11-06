@@ -19,29 +19,53 @@ void verify_parentesis()
     if (expression[0] == ')')
     {
         //retorna se for )(5+2) por ex
-        printf("Expressao incorreta!\n");
+        printf("incorrect\n");
+        return;
+    }
+    if(expression[0] == ']')
+     {
+        //retorna se for )(5+2) por ex
+        printf("incorrect\n");
+        return;
+    }
+    if(expression[0] == '}')
+     {
+        //retorna se for )(5+2) por ex
+        printf("incorrect\n");
         return;
     }
     else if (expression[string_tam] == '(')
     {
         //retorna se for (5+2)( por ex
-        printf("Expressao incorreta!\n");
+        printf("incorrect\n");
+        return;
+    }
+    else if (expression[string_tam] == '[')
+    {
+        //retorna se for (5+2)( por ex
+        printf("incorrect\n");
+        return;
+    }
+    else if (expression[string_tam] == '{')
+    {
+        //retorna se for (5+2)( por ex
+        printf("incorrect\n");
         return;
     }
     for (int i = 0; i < string_tam; i++)
     {
         //verifica que para cada '(' exista um ')'
-        if (expression[i] == '(')
+        if (expression[i] == '(' || expression[i] == '[' || expression[i] == '{')
         {
             //push para todo '('
             PUSH(&stack, expression[i]);
         }
-        else if (expression[i] == ')')
+        else if (expression[i] == ')' || expression[i] == ']' || expression[i] == '}')
         {
             //pop para todo ')'
             if (POP(&stack) == NULL)
             {
-                printf("Expressao incorreta!\n");
+                printf("incorrect\n");
                 return;
             }
         }
@@ -49,11 +73,11 @@ void verify_parentesis()
     //confere se os parenteses bateram e a pilha esta vazia
     if (is_empty(&stack))
     {
-        printf("Expressao correta!\n");
+        printf("correct\n");
     }
     else
     {
-        printf("Expressao incorreta!\n");
+        printf("incorrect\n");
     }
 }
 
