@@ -1,4 +1,4 @@
-package Unid6;
+package Unid7;
 
 public class No {
     int element;
@@ -34,7 +34,7 @@ public class No {
      * 
      * @param No nó que se deseja o nível.
      */
-    public static int getLevel(No x) {
+    public int getLevel(No x) {
         if (x == null) {
             return 0;
         } else {
