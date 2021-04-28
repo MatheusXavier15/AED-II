@@ -20,25 +20,26 @@ public class ArvoreBinaria {
      * @throws Exception Se o elemento existir.
      */
 
-    public void inserir(int x) throws Exception {
-        root = inserir(x, root);
+    public void insert(int x) throws Exception {
+        System.out.println("INSERIR ELEMENTO " + x);
+        root = insert(x, root);
     }
 
-    private No inserir(int x, No i) throws Exception {
-        if (i == null) {
-            i = new No(x);
+    private No insert(int element, No x) throws Exception {
+        if (x == null) {
+            x = new No(element);
 
-        } else if (x < i.element) {
-            i.left = inserir(x, i.left);
+        } else if (element < x.element) {
+            x.left = insert(element, x.left);
 
-        } else if (x > i.element) {
-            i.right = inserir(x, i.right);
+        } else if (element > x.element) {
+            x.right = insert(element, x.right);
 
         } else {
             throw new Exception("Erro ao inserir!");
         }
 
-        return i;
+        return x;
     }
 
     void insertDad(int x) throws Exception {
@@ -276,4 +277,18 @@ public class ArvoreBinaria {
             return dir;
     }
 
+    public int um_filho(){ // Java
+        return um_filho(root);
+    }
+    
+    public int um_filho(No x){
+        int filhos = 0;
+        if(x != null){
+            if(x.left == null || x.right == null){
+                filhos++;
+            }
+            return um_filho(x.left) + um_filho(x.right);
+        }
+        return filhos;
+    }
 }

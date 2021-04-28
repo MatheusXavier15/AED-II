@@ -1,4 +1,5 @@
 package Unid8;
+
 public class HashRehash{
     int[] Tab_Hash;
     int m;

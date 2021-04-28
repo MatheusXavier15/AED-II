@@ -12,16 +12,17 @@ public class Main {
     public static void main(String[] args) throws Exception {
         int element;
         ArvoreBinaria Tree = new ArvoreBinaria();
-        int[] array = { 5, 4, 3, 2, 1, 6, 9, 8, 7, 10 };
-        for (int i = 0; i < 10; i++) {
+        int[] array = {5,4,2,7,8,3,1};
+        for (int i = 0; i < array.length; i++) {
             element = array[i];
             System.out.println("Elemento inserido: " + element);
-            Tree.inserir(element);
-            // System.out.println("A arvore contém: " + i + " elementos");
-            // System.out.println("ln(" + element + ") = " + df.format(log(2, element)));
-            // System.out.println("Altura do elemento na árvore: " + Tree.ElementHeight(Tree.find(element)));
+            Tree.insert(array[i]);
+            System.out.println("A arvore contém: " + i + " elementos");
+            //System.out.println("ln(" + element + ") = " + df.format(log(2, element)));
+            System.out.println("Altura do elemento na árvore: " + Tree.ElementHeight(Tree.find(element)));
         }
-        //System.out.println(Tree.soma(Tree));
+        int filhos = Tree.um_filho();
+        System.out.println(filhos);
         System.out.println(Tree.countPares(Tree));
     }
     //Função que retorna o valor do logaritmo

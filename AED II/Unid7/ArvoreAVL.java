@@ -24,7 +24,7 @@ public class ArvoreAVL {
      * @return <code>true</code> se o elemento existir, <code>false</code> em caso
      *         contrario.
      */
-    public boolean find(int x) {
+    public int find(int x) {
         return find(x, root);
     }
 
@@ -36,18 +36,21 @@ public class ArvoreAVL {
      * @return <code>true</code> se o elemento existir, <code>false</code> em caso
      *         contrario.
      */
-    public boolean find(int x, No y) {
-        boolean answer = true;
+    public int find(int x, No y) {
+        int count = 0;
         if (y == null) {
-            answer = false;
+            return count;
         } else if (x == y.element) {
-            answer = true;
+            count++;
+            return count; 
         } else if (x < y.element) {
-            answer = find(x, y.left);
+            count++;
+            return find(x, y.left);
         } else if (x > y.element) {
-            answer = find(x, y.right);
+            count++;
+            return find(x, y.right);
         }
-        return answer;
+        return count;
     }
 
     /**
